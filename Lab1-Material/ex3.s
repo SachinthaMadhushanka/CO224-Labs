@@ -29,6 +29,11 @@ main:
  
  	ldr r5, [r0, #36];
  	ldr r6, [r0, #12];
+	ldr r7, [r1, #4];
+	add r8, r2, r3;
+	sub r8, r8, r4;
+	@ sub r10, 
+
  
  
  
