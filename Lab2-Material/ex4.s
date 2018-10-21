@@ -23,18 +23,18 @@ main:
 
 	@ ---------------------
 	cmp r0,#5
-	beq eq1
+	bgt gt1
 
 	cmp r0,#3
-	bne noteq1
+	bgt gt2
 
 	mov r5, #30
         @b printit @remove this line and see what happens (with i=3)
 
-eq1:	mov r5, #70
+gt1:	mov r5, #70
 	b   printit
 
-noteq1: mov r5,#55
+gt2: mov r5,#55
 	b   printit
 	
 	@ ---------------------
