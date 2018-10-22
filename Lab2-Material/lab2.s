@@ -16,6 +16,9 @@ main:
 	@ load j to r1
 	@load sum to r5
 
+	MOV r0, #0
+	MOV r1, #5
+	MOV r5, #0
 	
 	@ Write YOUR CODE HERE
 	
@@ -31,19 +34,41 @@ main:
 
 	@ ---------------------
 
+Loop1: 	CMP r0, #10
+		
+		BGE Exit
+		MOV r1, #5
+
+		
+Loop2: 	CMP r1, #15
+	
+		BGE End_Loop2
+	
+			@ Inner Loop
+			ADD  r6, r0, r1
+			CMP r6, #10
+			BGE Else
+				ADD r5, r5, r0, LSL #1
+			
+			B End_Inner
+			
+Else:
+		AND r7, r0, r1
+		ADD r5, r5, r7
+		B End_Inner
+		
+End_Loop2:
+		ADD r0, r0, #1
+		B Loop1
 	
 	
+End_Inner:
+		ADD r1, r1, #1
+		B Loop2
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+Exit:
+
+
 	@ ---------------------
 	
 	

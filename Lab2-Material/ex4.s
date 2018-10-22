@@ -29,7 +29,7 @@ main:
 	bgt gt2
 
 	mov r5, #30
-        @b printit @remove this line and see what happens (with i=3)
+        b printit @remove this line and see what happens (with i=3)
 
 gt1:	mov r5, #70
 	b   printit
