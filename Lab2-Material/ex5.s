@@ -23,12 +23,15 @@ main:
 
 	@ ---------------------
 	
-Loop:	CMP r0, #10
-		
-		BLT Exit
-		ADD 
+Loop :	CMP r0, #10
 
-Exit:
+	BGE Exit
+	ADD r1, r1, r0
+	ADD r0, r0, #1
+	B Loop
+
+Exit: 
+	MOV r5, r1
 	
 	@ ---------------------
 	
