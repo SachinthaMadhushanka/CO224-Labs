@@ -6,15 +6,36 @@
 @ Write YOUR CODE HERE	
 
 @ ---------------------	
-@ fact:
+fact:
+	SUB sp, sp, #4
+	STR r4, [sp, #0]
+	MOV r4, r0 	@ input n
+	
+	MOV r6, #1 	@ Temp fact	
+	
+	
+	@ calling the get_Fact function
+	SUB r4, r4, #1
+	mov r1, r4 	@the arg1 load
+	bl get_Fact
+	mov r5,r0
 
-
-
-
-
-
-
-
+get_Fact:
+	CMP r1, #1
+	MOV 
+	BEQ get_Fact_Exit
+	MUL 
+	
+	
+get_Fact_Exit:
+	
+	
+	
+	@ Main exit
+	MOV r0, r6
+	LDR r4, [sp, #0]
+	ADD sp, sp, #4
+	MOV pc, lr
 
 @ ---------------------	
 

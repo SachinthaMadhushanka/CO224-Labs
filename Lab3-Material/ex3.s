@@ -6,12 +6,40 @@
 @ Write YOUR CODE HERE	
 
 @ ---------------------	
-@ Fibonacci:
+Fibonacci:
 
-
-
-
-
+	SUB sp, sp, #4
+	STR r4, [sp, #0]
+	MOV r4, r0
+	
+	@ Temp sum
+	MOV r5, #0	
+	
+	@ Fib sum
+	MOV r6, #1
+	
+	@ Counter
+	MOV r7, #2
+	
+Fib_Loop:	
+	CMP r7, r4
+	
+	BGT Exit
+	MOV r8, r6
+	ADD r6, r6, r5
+	MOV r5, r8
+	ADD r7, r7, #1
+	B Fib_Loop 
+	
+	
+Exit:
+	
+	@ Fibonacci success!
+	
+	MOV r0, r6
+	LDR r4, [sp, #0]
+	ADD sp, sp, #4
+	MOV pc, lr
 
 
 
@@ -27,7 +55,7 @@ main:
 	sub sp, sp, #4
 	str lr, [sp, #0]
 
-	mov r4, #8 	@the value n
+	mov r4, #8	@the value n
 
 	@ calling the Fibonacci function
 	mov r0, r4 	@the arg1 load

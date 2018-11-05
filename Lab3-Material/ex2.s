@@ -16,6 +16,9 @@ gcd:
 	STR r4, [sp, #4]
 	STR r5, [sp, #0]
 	
+	MOV r4, r0
+	MOV r5, r1
+	
 	CMP r4, r5
 	BGT Swap
 Swap:
