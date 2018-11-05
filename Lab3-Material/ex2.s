@@ -10,17 +10,55 @@
 
 @ ---------------------	
 @Implement gcd subroutine to find gcd of arg1 and arg2
-@ gcd:
 
+gcd:
+	SUB sp, sp, #8
+	STR r4, [sp, #4]
+	STR r5, [sp, #0]
+	
+	CMP r4, r5
+	BGT Swap
+Swap:
+	MOV r8, r4
+	MOV r4, r5
+	MOV r5, r8
+	
+	@ normal flow
+	@ r4 is the lower value
 
+@ in the gcd loop
+GCD_Loop:
+	CMP r4, #0
+	
+	BEQ Exit
 
+	MOV r8, r4
+	MOV r9, r5
+	MOV r10, #0
+Div_Loop:	
+	CMP r9, r8
+	BLT Exit_Div_Loop
+	SUB r9, r9, r8
+	ADD r10, r10, #1
+	
+	B Div_Loop
 
-
-
-
-
-
-
+@ division success!	
+Exit_Div_Loop:
+	
+	
+	
+	MOV r5, r4
+	MOV r4, r7
+	B GCD_Loop
+	
+Exit:
+	MOV r0, r5
+	LDR r4, [sp, #4]
+	LDR r5, [sp, #0]
+	ADD sp, sp, #8
+	MOV pc, lr
+	
 
 @ ---------------------	
 
