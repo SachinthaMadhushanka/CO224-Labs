@@ -48,8 +48,8 @@ Exit_Div_Loop:
 	
 	
 	
-	MOV r5, r4
-	MOV r4, r7
+	MOV r5, r8
+	MOV r4, r9
 	B GCD_Loop
 	
 Exit:
