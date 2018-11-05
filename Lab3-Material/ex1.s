@@ -10,12 +10,27 @@
 @ mypow:
 @ implement using loops to calculate (arg1 ^ arg2)
 
+mypow:
+	SUB sp, sp, #8
+	STR r4, [sp, #4]
+	STR r5, [sp, #0]
+	MOV r6, #1 	@ Temp multiply value
+	MOV r7, #1	@ Counter
 
-
-
-
-
-
+Loop:
+	CMP r7, r5
+	
+	BGT Exit
+	MUL r6, r4, r6
+	ADD r7, r7, #1
+	B Loop
+	
+Exit:
+	MOV r0, r6
+	LDR r4, [sp, #4]
+	LDR r5, [sp, #0]
+	ADD sp, sp, #8
+	MOV pc, lr
 
 
 @ ---------------------	
