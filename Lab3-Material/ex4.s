@@ -23,12 +23,12 @@ fact:
 	bl fact
 
 	mul r0,r6,r0
-	str r0,[sp,#4]
+	str r0,[sp,#1]
 	
 
 factBase:
 	ldr lr,[sp,#0]
-	ldr r0,[sp,#4]
+	ldr r0,[sp,#1]
 	add sp,sp,#8
 	mov pc,lr
 
