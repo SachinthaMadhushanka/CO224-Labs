@@ -7,28 +7,26 @@
 
 @ ---------------------	
 fact:
-	sub sp,sp,#8
-	str lr,[sp,#0]
-	
+	sub sp, sp,#8
+	str lr, [sp,#0]
+	str r6, [sp, #4]
 
 	@base case
-	cmp r0,#0
+	cmp r0,#1
 		beq factBase
 	
 	mov r6,r0
-	
 	sub r0,r0,#1
-	
 	
 	bl fact
 
 	mul r0,r6,r0
-	str r0,[sp,#1]
+	@str r0,[sp,#1]
 	
 
 factBase:
 	ldr lr,[sp,#0]
-	ldr r0,[sp,#1]
+	ldr r6,[sp,#4]
 	add sp,sp,#8
 	mov pc,lr
 
@@ -74,7 +72,7 @@ main:
 	sub sp, sp, #4
 	str lr, [sp, #0]
 
-	mov r4, #8 	@the value n
+	mov r4,#3 	@the value n
 
 	@ calling the fact function
 	mov r0, r4 	@the arg1 load
