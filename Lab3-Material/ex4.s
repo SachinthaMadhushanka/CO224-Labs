@@ -7,35 +7,63 @@
 
 @ ---------------------	
 fact:
-	SUB sp, sp, #4
-	STR r4, [sp, #0]
-	MOV r4, r0 	@ input n
+	sub sp,sp,#8
+	str lr,[sp,#0]
 	
-	MOV r6, #1 	@ Temp fact	
+
+	@base case
+	cmp r0,#0
+		beq factBase
+	
+	mov r6,r0
+	
+	sub r0,r0,#1
+	
+	
+	bl fact
+
+	mul r0,r6,r0
+	str r0,[sp,#4]
+	
+
+factBase:
+	ldr lr,[sp,#0]
+	ldr r0,[sp,#4]
+	add sp,sp,#8
+	mov pc,lr
+
+@fact:
+@	SUB sp, sp, #8			
+@	STR r4, [sp, #4]			@ For actual input
+@	STR r10, [sp, #0]			@ For return address
+@	MOV r4, r0 					@ input n
+@	MOV r10, lr 				@ Save link register for the return address
+@
+@	MOV r6, #1 					@ Temp fact
 	
 	
 	@ calling the get_Fact function
-	SUB r4, r4, #1
-	mov r1, r4 	@the arg1 load
-	bl get_Fact
-	mov r5,r0
+@	SUB r4, r4, #1
+@	mov r1, r4 	@the arg1 load
+@	bl get_Fact
+@	mov r5,r0
 
-get_Fact:
-	CMP r1, #1
-	MOV 
-	BEQ get_Fact_Exit
-	MUL 
+@get_Fact:
+@	CMP r1, #1
+@	BEQ get_Fact_Exit
+@	MUL 
 	
 	
-get_Fact_Exit:
+@get_Fact_Exit:
 	
 	
 	
 	@ Main exit
-	MOV r0, r6
-	LDR r4, [sp, #0]
-	ADD sp, sp, #4
-	MOV pc, lr
+@	MOV r0, r6
+@	LDR r4, [sp, #0]
+@	ADD sp, sp, #4
+@	MOV lr, r10				@ restore the original main return address
+@	MOV pc, lr				
 
 @ ---------------------	
 
