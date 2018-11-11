@@ -7,10 +7,7 @@
 @ Write YOUR CODE HERE	
 
 @ ---------------------	
-get_values:
-	sub sp, sp, #8
-	str lr, [sp, #0]
-	str 
+
 
 @ ---------------------	
 
@@ -21,30 +18,21 @@ main:
 	sub sp, sp, #12
 	str lr, [sp, #0]
 
-	@ calling the scanf function
+	@ calling the scanf function -> First number
 	ldr r0, =format_scanf 		@the scanf format
 	mov r1, sp					@the arg2 load
 	bl scanf
-	ldr r0
 	mov r4, r0
 
-	@ calling the scanf function
+	@ calling the scanf function -> First number
 	ldr r0, =format_scanf 		@the scanf format
 	mov r1, sp					@the arg2 load
 	bl scanf
-	ldr r0
 	mov r5, r0
-
-	@ calling the get_values function
-	mov r0, r4
-	mov r1, r5
-	bl get_values
-
+	
 	@ load aguments and print
 	ldr r0, =format1
-	mov r1, r4
-	mov r2, r5
-	mov r3, r6
+	add r1, r4, r5
 	bl printf
 
 	@ stack handling (pop lr from the stack) and return
@@ -54,5 +42,5 @@ main:
 
 	.data	@ data memory
 format_scanf: .asciz "%d"
-format1: .asciz "The String you have entered : %d"
+format1: .asciz "Sum : %d"
 
