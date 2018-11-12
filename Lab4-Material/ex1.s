@@ -53,49 +53,53 @@ div_func:
  	
 	.global main
 main:
-	@ stack handling, will discuss later
+	@ stack handling
 	@ push (store) lr to r9
 	mov r9,lr
-	
+
 @-------------------input x
-    ldr r0, =first
-    bl printf
+    	ldr r0, =first
+    	bl printf
  	sub sp,sp,#4 		@allocate stack for input
 	ldr r0, =formatd	@scanf("%d")
-	mov r1,sp
-    bl scanf
+	mov r1,sp		@scanf(&sp)
+    	bl scanf
  	ldr r4,[sp,#0]		@load and save x
 	str r4,[sp,#4]
 	
 @--------------------input y
 	ldr r0, =second
-    bl printf
+    	bl printf
  	sub sp,sp,#4 		@allocate stack for input
 	ldr r0, =formatd	@scanf("%d")
 	mov r1,sp
-    bl scanf
+    	bl scanf
  	ldr r4,[sp,#0]		@load and save y
 	str r4,[sp,#8]
+
  @------------------------ calling the two_pow function
 	ldr r5,[sp,#8]		@load y
-	mov r0, r5 			@the arg1 load (y)
+	mov r0, r5 		@the arg1 load (y)
 	bl two_pow
 	mov r6,r0
+
 @------------------------ x*2^y
 	ldr r4,[sp,#4] 		@load x
 	mul r8,r4,r6
  	ldr r0, =answerOne
 	mov r1,r8 		
 	bl printf
+
  @------------------------- x / 2^y 
 	mov r0, r4
 	mov r1, r6
 	bl div_func
 	mov r8,r0
- 	ldr r0, =answerOne
+ 	ldr r0, =answerTwo
 	mov r1,r8 		
 	bl printf
  @-------------------------------------------------------
+ 
 	@ stack handling (pop lr from the stack) and return
 	mov lr,r9
 	@add sp, sp, #4
